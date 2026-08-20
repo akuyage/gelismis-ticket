@@ -132,4 +132,6 @@ Veritabanı `data/` klasöründe tutulur ve bot açılışta otomatik oluşturul
 
 Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
 
+https://discord.gg/kK8Gdqk88a
+
 *Powered by akuyage*
