@@ -12,7 +12,8 @@ export const BACKUP_TABLES = [
   'TicketNotes',
   'TicketBlacklist',
   'Feedbacks',
-  'EmbedPanels'
+  'EmbedPanels',
+  'TicketCategories'
 ];
 
 function ensureBackupDir() {

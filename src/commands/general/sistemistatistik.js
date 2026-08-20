@@ -76,15 +76,14 @@ export default {
     ].join('\n');
 
     const payload = {
-      flags: MessageFlags.IsComponentsV2,
+      flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2],
       components: [
         container([
           textDisplay(bodyContent),
           separator(true, 1),
           footerDisplay()
         ])
-      ],
-      flags: MessageFlags.Ephemeral
+      ]
     };
 
     await interaction.reply(payload);

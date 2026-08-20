@@ -34,7 +34,11 @@ export function footerDisplay() {
   return textDisplay('-# Powered by akuyage');
 }
 
-export function createPanelMessage() {
+export function createPanelMessage(imageUrl = '', categories = []) {
+  const categoryLines = categories.map(c =>
+    `**${c.emoji ? c.emoji + ' ' : ''}${c.name}**\n↳ ${c.description || ''}`
+  );
+
   const panelText = [
     '## 🎫 Destek & İletişim Merkezi',
     'Yardıma mı ihtiyacınız var? Aşağıdaki menüden ilgili kategoriyi seçerek hemen bir destek talebi oluşturabilirsiniz.',
@@ -45,62 +49,56 @@ export function createPanelMessage() {
     '• Talebinizle ilgili tüm detayları eksiksiz iletmeniz çözümü hızlandıracaktır.',
     '',
     '### 📁 Mevcut Kategoriler',
-    '**❓ Genel Destek**',
-    '↳ Genel sorular, öneriler ve bilgi talepleri.',
-    '',
-    '**💻 Teknik Destek**',
-    '↳ Hata bildirimleri, teknik problemler ve kurulum yardımı.',
-    '',
-    '**💳 Ödeme & Fatura**',
-    '↳ Satın alımlar, ödeme bildirimleri ve fatura işlemleri.'
+    ...(categoryLines.length ? categoryLines : ['*Henüz kategori eklenmemiş.*'])
   ].join('\n');
+
+  const inner = [
+    textDisplay(panelText),
+    separator(true, 1)
+  ];
+
+  if (imageUrl) {
+    inner.push({
+      type: 12,
+      items: [{ media: { url: imageUrl } }]
+    });
+    inner.push(separator(true, 1));
+  }
+
+  const selectOptions = categories.slice(0, 25).map(c => {
+    const option = {
+      label: `${c.emoji ? c.emoji + ' ' : ''}${c.name}`.slice(0, 100),
+      value: c.categoryId
+    };
+    if (c.description) option.description = c.description.slice(0, 100);
+    if (c.emoji) option.emoji = { name: c.emoji };
+    return option;
+  });
+
+  selectOptions.push({
+    label: 'Seçimi Sıfırla',
+    value: 'cat_reset',
+    description: 'Seçiminizi sıfırlamak için tıklayın.',
+    emoji: { name: '🔄' }
+  });
+
+  inner.push({
+    type: 1,
+    components: [
+      {
+        type: 3,
+        custom_id: 'select_ticket_category',
+        placeholder: 'Lütfen bir destek kategorisi seçin...',
+        options: selectOptions
+      }
+    ]
+  });
+
+  inner.push(separator(true, 1), footerDisplay());
 
   return {
     flags: MessageFlags.IsComponentsV2,
-    components: [
-      container([
-        textDisplay(panelText),
-        separator(true, 1),
-        {
-          type: 1,
-          components: [
-            {
-              type: 3,
-              custom_id: 'select_ticket_category',
-              placeholder: 'Lütfen bir destek kategorisi seçin...',
-              options: [
-                {
-                  label: 'Genel Destek',
-                  value: 'cat_general',
-                  description: 'Genel sorular, öneriler ve bilgi talepleri.',
-                  emoji: { name: '❓' }
-                },
-                {
-                  label: 'Teknik Destek',
-                  value: 'cat_technical',
-                  description: 'Hata bildirimleri, teknik problemler ve kurulum yardımı.',
-                  emoji: { name: '💻' }
-                },
-                {
-                  label: 'Ödeme & Fatura',
-                  value: 'cat_payment',
-                  description: 'Satın alımlar, ödeme bildirimleri ve fatura işlemleri.',
-                  emoji: { name: '💳' }
-                },
-                {
-                  label: 'Seçimi Sıfırla',
-                  value: 'cat_reset',
-                  description: 'Seçiminizi sıfırlamak için tıklayın.',
-                  emoji: { name: '🔄' }
-                }
-              ]
-            }
-          ]
-        },
-        separator(true, 1),
-        footerDisplay()
-      ])
-    ]
+    components: [container(inner)]
   };
 }
 

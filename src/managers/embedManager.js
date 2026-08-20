@@ -75,7 +75,7 @@ export async function startBuilder(interaction) {
     createdAt: Date.now()
   };
   builders.set(interaction.user.id, builder);
-  return interaction.reply({ ...renderDraft(builder), flags: MessageFlags.Ephemeral });
+  return interaction.reply({ ...renderDraft(builder), flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
 }
 
 export async function startEditor(interaction, embedId) {
@@ -97,7 +97,7 @@ export async function startEditor(interaction, embedId) {
   };
 
   builders.set(interaction.user.id, builder);
-  return { ...renderDraft(builder), flags: MessageFlags.Ephemeral };
+  return { ...renderDraft(builder), flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] };
 }
 
 function actionLabel(action) {
@@ -581,7 +581,7 @@ export async function executeAction(interaction, panel, option) {
     if (!interaction.guild) {
       return interaction.reply({ content: '❌ Bu işlem bir sunucuda kullanılabilir.', flags: MessageFlags.Ephemeral });
     }
-    return interaction.reply({ ...renderTicketPrompt(panel, option), flags: MessageFlags.Ephemeral });
+    return interaction.reply({ ...renderTicketPrompt(panel, option), flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
   }
 
   if (action.type === 'dm') {

@@ -1,4 +1,5 @@
 ﻿import db from '../connect.js';
+import { ensureDefaultCategories } from '../../managers/categoryManager.js';
 
 const tableSchemas = {
 Tickets: {
@@ -63,6 +64,16 @@ TicketBlacklist: {
     createdBy: 'TEXT',
     createdAt: 'INTEGER',
     updatedAt: 'INTEGER'
+  },
+  TicketCategories: {
+    categoryId: 'TEXT PRIMARY KEY',
+    name: 'TEXT NOT NULL',
+    description: 'TEXT DEFAULT ""',
+    emoji: 'TEXT DEFAULT ""',
+    modalTitle: 'TEXT DEFAULT ""',
+    modalLabel: 'TEXT DEFAULT ""',
+    createdAt: 'INTEGER',
+    updatedAt: 'INTEGER'
   }
 };
 
@@ -102,7 +113,9 @@ export function setupTables() {
 
   // Drop tables that are no longer used
   db.prepare('DROP TABLE IF EXISTS StaffStats').run();
-  db.prepare('DROP TABLE IF EXISTS TicketCategories').run();
+
+  // Seed default ticket categories if the table is empty
+  ensureDefaultCategories();
 
   console.log('[Database] Tables check, migrations, and indexing completed.');
 }

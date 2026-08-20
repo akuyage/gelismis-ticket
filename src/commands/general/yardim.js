@@ -11,7 +11,8 @@ export default {
       '',
       '### ⚙️ Yönetici Komutları',
       '• `/kur` — Ticket kategorisi ve otomatik log kanallarını kurar.',
-      '• `/panelgonder` — Ticket panelini istediğiniz kanala gönderir.',
+      '• `/panelgonder` — Ticket panelini istediğiniz kanala gönderir (görsel eklenebilir).',
+      '• `/panelozellestir` — Ticket kategorilerini ekler/düzenler/siler.',
       '• `/kaldir` — Ticket panelini ve bot ayarlarını kaldırır.',
       '• `/config` — Bot yapılandırma ayarlarını görüntüler ve düzenler.',
       '• `/blacklist` — Ticket açma kara listesini yönetir (ekle/kaldır/liste).',
@@ -39,15 +40,14 @@ export default {
     ].join('\n');
 
     const payload = {
-      flags: MessageFlags.IsComponentsV2,
+      flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2],
       components: [
         container([
           textDisplay(helpContent),
           separator(true, 1),
           footerDisplay()
         ])
-      ],
-      flags: MessageFlags.Ephemeral
+      ]
     };
 
     await interaction.reply(payload);

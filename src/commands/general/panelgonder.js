@@ -1,5 +1,6 @@
 import { SlashCommandBuilder, PermissionFlagsBits, ChannelType , MessageFlags} from 'discord.js';
 import { createPanelMessage } from '../../managers/ticketTemplate.js';
+import { listCategories } from '../../managers/categoryManager.js';
 
 export default {
   data: new SlashCommandBuilder()
@@ -12,6 +13,12 @@ export default {
         .setDescription('Panelin gönderileceği kanal (boş bırakılırsa bu kanala gönderilir).')
         .addChannelTypes(ChannelType.GuildText)
         .setRequired(false)
+    )
+    .addStringOption(option =>
+      option
+        .setName('gorsel')
+        .setDescription('Panela eklenecek görselin linki (https:// ile başlamalı).')
+        .setRequired(false)
     ),
   async execute(interaction) {
     await interaction.deferReply({ flags: MessageFlags.Ephemeral });
@@ -21,7 +28,18 @@ export default {
       return interaction.editReply({ content: '❌ Geçerli bir metin kanalı seçiniz.' });
     }
 
-    await target.send(createPanelMessage());
-    await interaction.editReply({ content: `✅ Ticket paneli <#${target.id}> kanalına gönderildi.` });
+    let imageUrl = interaction.options.getString('gorsel') || '';
+    if (imageUrl) {
+      imageUrl = imageUrl.trim();
+      if (!/^https?:\/\/.+/.test(imageUrl)) {
+        return interaction.editReply({ content: '❌ Geçersiz görsel linki. Lütfen `https://` ile başlayan bir URL girin.' });
+      }
+      if (imageUrl.length > 1024) {
+        return interaction.editReply({ content: '❌ Görsel linki çok uzun (en fazla 1024 karakter).' });
+      }
+    }
+
+    await target.send(createPanelMessage(imageUrl, listCategories()));
+    await interaction.editReply({ content: `✅ Ticket paneli <#${target.id}> kanalına gönderildi${imageUrl ? ' (görsel eklendi).' : '.'}` });
   }
 };

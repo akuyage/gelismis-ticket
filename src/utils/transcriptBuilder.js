@@ -1,7 +1,7 @@
 ﻿import { AttachmentBuilder } from 'discord.js';
 import db from '../database/connect.js';
 import generateTranscript from './transcriptGenerator.js';
-import { CATEGORY_NAMES } from './categories.js';
+import { getCategoryName } from './categories.js';
 
 async function resolveUserName(client, userId) {
   if (!userId) return { name: 'Bilinmiyor', id: '—' };
@@ -45,7 +45,7 @@ export async function buildTranscript(channel, ticket) {
       claimedById: claimedBy.id,
       closerName: closer.name,
       closerId: closer.id,
-      category: CATEGORY_NAMES[ticket.categoryId] || ticket.categoryId || 'Destek',
+      category: getCategoryName(ticket.categoryId),
       notes
     };
 

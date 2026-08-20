@@ -704,8 +704,7 @@ export async function recordRating(interaction, ticketId, rating) {
 
   // Disable the rating buttons so it cannot be changed later
   const updatedMsg = createRatingMessage({ ...ticket, closedBy: ticket.closedBy }, ticket.closeReason || '', true);
-  const { flags, ...updatePayload } = updatedMsg;
-  await interaction.update(updatePayload);
+  await interaction.update(updatedMsg);
 
   await interaction.followUp({
     content: `⭐ **Teşekkürler!** Değerlendirmeniz (${value}/5) kaydedildi.`,
@@ -800,8 +799,7 @@ export async function approveFeedback(interaction, feedbackId) {
   }
 
   try {
-    const { flags, ...updatePayload } = createFeedbackPendingMessage(feedback, true);
-    await interaction.editReply(updatePayload).catch(() => {});
+    await interaction.editReply(createFeedbackPendingMessage(feedback, true)).catch(() => {});
   } catch (e) { /* ignore */ }
 
   await interaction.followUp({ content: '✅ Geri bildirim onaylandı ve geri bildirim kanalına iletildi.', flags: MessageFlags.Ephemeral }).catch(() => {});

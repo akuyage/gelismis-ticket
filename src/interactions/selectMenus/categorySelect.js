@@ -1,4 +1,5 @@
-﻿import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder } from 'discord.js';
+﻿import { ModalBuilder, TextInputBuilder, TextInputStyle, ActionRowBuilder, MessageFlags } from 'discord.js';
+import { getCategory } from '../../managers/categoryManager.js';
 
 export default {
   customId: 'select_ticket_category',
@@ -9,23 +10,17 @@ export default {
       return interaction.deferUpdate();
     }
 
-    let modalTitle = 'Destek Talebi Formu';
-    let customModalId = 'modal_ticket_form_general';
-    let label = 'Sorununuzu Kısaca Açıklayınız';
-
-    if (selected === 'cat_payment') {
-      modalTitle = 'Ödeme & Fatura Destek Formu';
-      customModalId = 'modal_ticket_form_payment';
-      label = 'Sipariş/İşlem Numarası ve Sorununuz';
-    } else if (selected === 'cat_technical') {
-      modalTitle = 'Teknik Destek Formu';
-      customModalId = 'modal_ticket_form_technical';
-      label = 'Karşılaştığınız Hata / Teknik Detaylar';
+    const category = getCategory(selected);
+    if (!category) {
+      return interaction.reply({
+        content: '❌ Seçtiğiniz kategori bulunamadı. Panel yeniden gönderilmiş olabilir, yöneticilerden `/panelozellestir` ile kontrol etmelerini isteyin.',
+        flags: MessageFlags.Ephemeral
+      });
     }
 
     const modal = new ModalBuilder()
-      .setCustomId(customModalId)
-      .setTitle(modalTitle);
+      .setCustomId(`modal_ticket_form_${category.categoryId}`)
+      .setTitle(category.modalTitle || 'Destek Talebi Formu');
 
     const topicInput = new TextInputBuilder()
       .setCustomId('input_topic')
@@ -36,7 +31,7 @@ export default {
 
     const descriptionInput = new TextInputBuilder()
       .setCustomId('input_description')
-      .setLabel(label)
+      .setLabel(category.modalLabel || 'Sorununuzu Kısaca Açıklayınız')
       .setStyle(TextInputStyle.Paragraph)
       .setPlaceholder('Lütfen detayları buraya yazınız...')
       .setRequired(true);

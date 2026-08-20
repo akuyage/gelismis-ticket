@@ -1,9 +1,7 @@
-export const CATEGORY_NAMES = {
-  cat_general: 'Genel Destek',
-  cat_technical: 'Teknik Destek',
-  cat_payment: 'Ödeme & Fatura'
-};
+import { getCategoryName as dbGetCategoryName, FALLBACK_NAMES } from '../managers/categoryManager.js';
+
+export const CATEGORY_NAMES = FALLBACK_NAMES;
 
 export function getCategoryName(categoryId) {
-  return CATEGORY_NAMES[categoryId] || categoryId || 'Ticket';
+  return dbGetCategoryName(categoryId);
 }
