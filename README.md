@@ -5,7 +5,8 @@ Kategori seçimli panel, SLA uyarıları, transkript, değerlendirme, geri bildi
 
 ## ✨ Özellikler
 
-- 🎫 Kategori seçimli ticket paneli (`panelgonder`)
+- 🎫 Kategori seçimli ticket paneli (`panelgonder`) — görsel ekleme desteği
+- 🛠️ Ticket kategorilerini tamamen özelleştirme (`panelozellestir`) — ekle / düzenle / sil / sıfırla
 - 📌 Ticket üstlenme, bırakma ve yetkiliye devretme
 - 🔒 Kapanışta otomatik HTML transkript + DM değerlendirme (1-5 ⭐)
 - 💬 Geri bildirim sistemi (yetkili onayı ile yayınlama)
@@ -70,7 +71,7 @@ Kategori seçimli panel, SLA uyarıları, transkript, değerlendirme, geri bildi
 | `developers` | Geliştirici kullanıcı ID'leri |
 | `status` | Botun durum mesajı |
 
-Kanal ve rol ID'lerini yapılandırmak için `config` ve `cfg-duzenle` komutları da kullanılabilir.
+Kanal ve rol ID'lerini yapılandırmak için `config` ve `cfg-duzenle` komutları da kullanılabilir. Ticket kategorileri (ad, açıklama, emoji, form başlığı/etiketi) ise `/panelozellestir` komutuyla yönetilir ve `TicketCategories` tablosunda saklanır.
 
 ## 🗂️ Komutlar
 
@@ -79,7 +80,7 @@ Kanal ve rol ID'lerini yapılandırmak için `config` ve `cfg-duzenle` komutlar�
 | Komut | Açıklama |
 | --- | --- |
 | `/yardim` | Tüm komutları ve kullanımı gösterir |
-| `/panelgonder` | Ticket panelini belirtilen kanala gönderir |
+| `/panelgonder` | Ticket panelini belirtilen kanala gönderir (`gorsel` ile görsel eklenebilir) |
 | `/gecmis <kullanici>` | Kullanıcının ticket geçmişini gösterir |
 | `/istatistik` | Personel performans istatistiklerini gösterir |
 | `/sistemistatistik` | Sistemin genel istatistiklerini gösterir |
@@ -90,6 +91,7 @@ Kanal ve rol ID'lerini yapılandırmak için `config` ve `cfg-duzenle` komutlar�
 | --- | --- |
 | `/kur` | Botu kurar; kategori ve log kanallarını hazırlar |
 | `/kaldir` | Ticket sisteminin kurulumunu ve kanallarını kaldırır |
+| `/panelozellestir` | Ticket kategorilerini özelleştirir (`liste` / `ekle` / `duzenle` / `kaldir` / `sifirla`). Kategoriler veritabanında saklanır; ad, açıklama, emoji ve form başlığı/etiketi düzenlenebilir |
 | `/config` | Konfigürasyonu görüntüler/düzenler |
 | `/cfg-duzenle` | Rol ve kanal ayarlarını düzenler |
 | `/blacklist` | Kara listeyi yönetir |
