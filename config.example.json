@@ -1,0 +1,19 @@
+{
+  "panelChannelId": "PANEL_KANAL_ID",
+  "logChannelId": "LOG_KANAL_ID",
+  "ticketCategoryId": "TICKET_KATEGORI_ID",
+  "noteLogChannelId": "NOT_LOG_KANAL_ID",
+  "transcriptChannelId": "TRANSKRIPT_KANAL_ID",
+  "feedbackSystemChannelId": "GERI_BILDIRIM_SISTEM_KANAL_ID",
+  "feedbackChannelId": "GERI_BILDIRIM_KANAL_ID",
+  "scoreLogChannelId": "PUAN_LOG_KANAL_ID",
+  "blacklistLogChannelId": "KARA_LISTE_LOG_KANAL_ID",
+  "staffRoleId": "YETKILI_ROL_ID",
+  "slaWarningTimeout": 14400,
+  "devGuildId": "",
+  "developers": [],
+  "status": {
+    "type": "Playing",
+    "text": "made by akuyage"
+  }
+}

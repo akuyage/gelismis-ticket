@@ -1,0 +1,14 @@
+﻿{
+  "name": "gelismis-ticket-bot",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.2.1",
+    "discord.js": "^14.16.2",
+    "dotenv": "^16.4.5"
+  }
+}
