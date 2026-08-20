@@ -1,6 +1,7 @@
 import { MessageFlags } from 'discord.js';
 import db from '../database/connect.js';
 import { container, textDisplay, separator, footerDisplay } from './ticketTemplate.js';
+import { createTicket } from './ticketManager.js';
 
 const ACTION_LABELS = {
   dm: '📩 Kullanıcıya DM',
@@ -344,38 +345,6 @@ export function renderRoleSelect(panel, roles) {
   };
 }
 
-export function renderTicketPrompt(panel, option) {
-  const content = [
-    '### 🎫 Ticket Oluştur',
-    '',
-    `**${option.label}** seçeneği için bir destek talebi oluşturmanız gerekmektedir.`,
-    'Aşağıdaki **Ticket Oluştur** butonuna basarak talebinizi hemen açabilirsiniz.'
-  ].join('\n');
-
-  return {
-    flags: MessageFlags.IsComponentsV2,
-    components: [
-      container([
-        textDisplay(content),
-        separator(true, 1),
-        {
-          type: 1,
-          components: [
-            {
-              type: 2,
-              style: 3,
-              custom_id: `btn_embedticket_${panel.embedId}_${option.value}`,
-              label: '🎫 Ticket Oluştur'
-            }
-          ]
-        },
-        separator(true, 1),
-        footerDisplay()
-      ])
-    ]
-  };
-}
-
 export function renderSaved(panel) {
   const content = [
     '### ✅ Embed / Panel kaydedildi',
@@ -581,7 +550,10 @@ export async function executeAction(interaction, panel, option) {
     if (!interaction.guild) {
       return interaction.reply({ content: '❌ Bu işlem bir sunucuda kullanılabilir.', flags: MessageFlags.Ephemeral });
     }
-    return interaction.reply({ ...renderTicketPrompt(panel, option), flags: [MessageFlags.Ephemeral, MessageFlags.IsComponentsV2] });
+    const categoryName = option.label || 'Ticket';
+    return createTicket(interaction, categoryName, categoryName, {
+      'Seçilen Seçenek': categoryName
+    });
   }
 
   if (action.type === 'dm') {
