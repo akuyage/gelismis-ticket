@@ -130,6 +130,6 @@ Veritabanı `data/` klasöründe tutulur ve bot açılışta otomatik oluşturul
 
 ## 📄 Lisans
 
-MIT Lisansı.
+Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
 
 *Powered by akuyage*
