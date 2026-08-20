@@ -22,7 +22,8 @@ export default {
         });
       }
 
-      builder.type = interaction.values[0] === 'buttons' ? 'buttons' : 'select';
+      const selectedType = interaction.values[0];
+      builder.type = ['select', 'buttons', 'rtl_list'].includes(selectedType) ? selectedType : 'select';
 
       await interaction.deferUpdate();
       return interaction.editReply(renderDraft(builder));

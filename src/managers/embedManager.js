@@ -11,7 +11,8 @@ const ACTION_LABELS = {
 
 const PANEL_TYPES = {
   select: '📋 Liste (Select Menü)',
-  buttons: '🔘 Butonlar'
+  buttons: '🔘 Butonlar',
+  rtl_list: '↔️ Sağdan Sola Liste'
 };
 
 const COLOR_PRESETS = [
@@ -39,7 +40,6 @@ function randomId(prefix, length) {
   }
   return result;
 }
-
 function generateEmbedId() {
   let id;
   do {
@@ -191,7 +191,8 @@ export function renderTypeSelect(panel) {
               placeholder: 'Panel tipini seçin...',
               options: [
                 { label: '📋 Liste (Select Menü)', value: 'select', description: 'Seçenekler açılır listede görünür.' },
-                { label: '🔘 Butonlar', value: 'buttons', description: 'Seçenekler butonlar halinde görünür.' }
+                { label: '🔘 Butonlar', value: 'buttons', description: 'Seçenekler butonlar halinde görünür.' },
+                { label: '↔️ Sağdan Sola Liste', value: 'rtl_list', description: 'Seçenekler açıklama ve sağda İncele butonuyla görünür.' }
               ]
             }
           ]
@@ -423,7 +424,23 @@ export function createPanelMessage(panel) {
     inner.push(separator(true, 1));
   }
 
-  if (panel.type === 'buttons') {
+  if (panel.type === 'rtl_list') {
+    // Her seçenek, açıklaması solda ve aksiyon butonu sağda olacak şekilde gösterilir.
+    for (const option of options) {
+      inner.push({
+        type: 9,
+        components: [
+          textDisplay(`**${option.label.slice(0, 80)}**${option.description ? `\n${option.description.slice(0, 200)}` : ''}`)
+        ],
+        accessory: {
+          type: 2,
+          style: 2,
+          custom_id: `btn_embedoption_${panel.embedId}_${option.value}`,
+          label: 'İncele'
+        }
+      });
+    }
+  } else if (panel.type === 'buttons') {
     // Seçenekler butonlar halinde, panelin içinde (satır başına 5)
     for (let i = 0; i < options.length; i += 5) {
       inner.push({
@@ -466,7 +483,7 @@ export function createPanelMessage(panel) {
 export function renderPanelList(panels) {
   const lines = panels.map((p, i) => {
     const optionCount = JSON.parse(p.options || '[]').length;
-    const typeLabel = p.type === 'buttons' ? '🔘 Butonlu' : '📋 Liste';
+    const typeLabel = PANEL_TYPES[p.type] || PANEL_TYPES.select;
     return `**${i + 1}.** **${p.name || 'Panelsiz'}** (\`${p.embedId}\`)\n   ${typeLabel} • 📌 ${p.title || 'Başlıksız'} • 🎨 \`${p.color}\` • ➕ ${optionCount} seçenek\n   🕒 ${new Date(p.createdAt).toLocaleString('tr-TR')}`;
   });
 

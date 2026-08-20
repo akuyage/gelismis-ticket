@@ -16,9 +16,9 @@ export default {
     .addChannelOption(opt =>
       opt
         .setName('kanal')
-        .setDescription('Panelin gönderileceği kanal.')
+        .setDescription('Panelin gönderileceği kanal. Belirtilmezse komutun kullanıldığı kanala gönderilir.')
         .addChannelTypes(ChannelType.GuildText)
-        .setRequired(true)
+        .setRequired(false)
     ),
   async autocomplete(interaction) {
     const focused = interaction.options.getFocused().toLowerCase();
@@ -26,7 +26,7 @@ export default {
   },
   async execute(interaction) {
     const embedId = interaction.options.getString('panel');
-    const channel = interaction.options.getChannel('kanal');
+    const channel = interaction.options.getChannel('kanal') || interaction.channel;
 
     const panel = getPanel(embedId);
     if (!panel) {
@@ -39,6 +39,13 @@ export default {
     if (panel.options.length === 0) {
       return interaction.reply({
         content: '❌ Bu panelin seçeneği yok, gönderilemez.',
+        flags: MessageFlags.Ephemeral
+      });
+    }
+
+    if (!channel || typeof channel.send !== 'function') {
+      return interaction.reply({
+        content: '❌ Paneli göndermek için geçerli bir metin kanalı seçin veya komutu metin kanalında kullanın.',
         flags: MessageFlags.Ephemeral
       });
     }
