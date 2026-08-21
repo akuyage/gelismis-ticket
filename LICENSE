@@ -1,21 +1,46 @@
-MIT License
+# Akuyage License
 
 Copyright (c) 2026 akuyage
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+Bu proje ücretsiz ve açık kaynak olarak sunulmaktadır.
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+## İzinler
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+Bu yazılımı ücretsiz olarak kullanabilir, değiştirebilir ve kendi Discord sunucularınızda çalıştırabilirsiniz.
+
+## Zorunlu Atıf
+
+Bu yazılımı kullanan her bot hesabının **Discord profil durumunda**, botun kullanıldığı projenin adı ile birlikte aşağıdaki formatta geliştirici atfı bulunmak zorundadır:
+
+`<Proje Adı> - akuyage`
+
+Örneğin:
+
+`Ticket - akuyage`
+
+Botun Discord profil durumundaki bu atıf, yazılım aktif olarak kullanıldığı sürece görünür ve okunabilir şekilde bulunmalıdır.
+
+`- akuyage` ifadesi kaldırılamaz, gizlenemez veya başka bir geliştirici adıyla değiştirilemez.
+
+## Yeniden Dağıtım
+
+Projenin veya değiştirilmiş sürümlerinin yeniden dağıtılması durumunda bu lisans dosyası ve **akuyage** atfı korunmalıdır.
+
+## Lisans İhlali
+
+Bu lisansın herhangi bir şartının ihlal edilmesi halinde, ihlali gerçekleştiren kişiye verilen **tüm kullanım, değiştirme ve yeniden dağıtma izinleri derhal ve otomatik olarak sona erer.**
+
+Lisans ihlali sonrasında yazılımın kullanılmaya, değiştirilmiş sürümlerinin dağıtılmaya veya yazılımın yeniden dağıtılmaya devam edilmesi bu lisans kapsamında değildir.
+
+İhlalin giderilmesi ve geliştirici tarafından açıkça yeniden izin verilmesi halinde kullanım hakkı yeniden verilebilir.
+
+## Sorumluluk Reddi
+
+Bu yazılım herhangi bir garanti olmaksızın "olduğu gibi" sunulmaktadır. Yazılımın kullanımından kaynaklanan zararlardan geliştirici sorumlu değildir.
+
+---
+
+**Ücretsiz kullan. Değiştir. Paylaş.
+Ama botunun Discord profil durumunda `<Proje Adı> - akuyage` formatında atıf bulunsun.**
+
+© 2026 akuyage
