@@ -76,6 +76,20 @@ export default {
       return interaction.editReply(renderActionSelect(builder, label));
     }
 
+    if (step === 'editopt') {
+      const index = parseInt(parts[4], 10);
+      const option = builder.options[index];
+      if (!option) {
+        return interaction.reply({ content: '❌ Seçenek bulunamadı.', flags: MessageFlags.Ephemeral });
+      }
+      const label = interaction.fields.getTextInputValue('input_label').trim();
+      const description = interaction.fields.getTextInputValue('input_optdesc').trim();
+      option.label = label;
+      option.description = description;
+      await interaction.deferUpdate();
+      return interaction.editReply(renderDraft(builder));
+    }
+
     if (step === 'save') {
       const name = interaction.fields.getTextInputValue('input_name').trim();
       builder.name = name || builder.title || 'Panel';

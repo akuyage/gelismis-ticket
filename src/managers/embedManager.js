@@ -155,6 +155,7 @@ export function renderDraft(panel) {
         { type: 2, style: 3, custom_id: `btn_embedbuild_text_${panel.embedId}`, label: '📝 Metin Ekle' },
         { type: 2, style: 3, custom_id: `btn_embedbuild_deltext_${panel.embedId}`, label: '🗑️ Metin Kaldır' },
         { type: 2, style: 3, custom_id: `btn_embedbuild_addopt_${panel.embedId}`, label: '➕ Seçenek Ekle' },
+        { type: 2, style: 3, custom_id: `btn_embedbuild_editopt_${panel.embedId}`, label: '✏️ Seçenek Düzenle' },
         { type: 2, style: 3, custom_id: `btn_embedbuild_delopt_${panel.embedId}`, label: '🗑️ Seçenek Kaldır' }
       ]
     },
@@ -279,6 +280,35 @@ export function renderOptionRemoveSelect(panel) {
             {
               type: 3,
               custom_id: `select_embeddelopt_${panel.embedId}`,
+              placeholder: 'Seçenek seçin...',
+              options
+            }
+          ]
+        }
+      ])
+    ]
+  };
+}
+
+export function renderOptionEditSelect(panel) {
+  const options = panel.options.slice(0, 25).map((o, i) => ({
+    label: o.label || `Seçenek ${i + 1}`,
+    value: String(i),
+    description: o.description ? o.description.slice(0, 100) : undefined
+  }));
+
+  return {
+    flags: MessageFlags.IsComponentsV2,
+    components: [
+      container([
+        textDisplay('### ✏️ Seçenek Düzenle\n\nDüzenlemek istediğiniz seçeneği seçin:'),
+        separator(true, 1),
+        {
+          type: 1,
+          components: [
+            {
+              type: 3,
+              custom_id: `select_embededitopt_${panel.embedId}`,
               placeholder: 'Seçenek seçin...',
               options
             }
@@ -439,6 +469,7 @@ export function createPanelMessage(panel) {
           label: 'İncele'
         }
       });
+      inner.push(separator(true, 1));
     }
   } else if (panel.type === 'buttons') {
     // Seçenekler butonlar halinde, panelin içinde (satır başına 5)

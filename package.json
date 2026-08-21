@@ -6,7 +6,8 @@
   "type": "module",
   "main": "src/index.js",
   "scripts": {
-    "start": "node src/index.js"
+    "start": "node src/index.js",
+    "dev": "node --watch src/index.js"
   },
   "dependencies": {
     "better-sqlite3": "^11.2.1",

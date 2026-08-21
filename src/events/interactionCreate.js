@@ -55,10 +55,19 @@ export default {
       }
     } catch (error) {
       console.error('[InteractionCreate] Error handling interaction:', error);
-      if (interaction.replied || interaction.deferred) {
-        await interaction.followUp({ content: '❌ İşlem sırasında bir hata oluştu.', flags: MessageFlags.Ephemeral }).catch(() => {});
-      } else {
-        await interaction.reply({ content: '❌ İşlem sırasında bir hata oluştu.', flags: MessageFlags.Ephemeral }).catch(() => {});
+      try {
+        if (interaction.isAutocomplete()) {
+          if (!interaction.responded) await interaction.respond([]).catch(() => {});
+          return;
+        }
+        if (typeof interaction.reply !== 'function') return;
+        if (interaction.replied || interaction.deferred) {
+          await interaction.followUp({ content: '❌ İşlem sırasında bir hata oluştu.', flags: MessageFlags.Ephemeral }).catch(() => {});
+        } else {
+          await interaction.reply({ content: '❌ İşlem sırasında bir hata oluştu.', flags: MessageFlags.Ephemeral }).catch(() => {});
+        }
+      } catch (replyError) {
+        console.error('[InteractionCreate] Failed to send error message:', replyError);
       }
     }
   }

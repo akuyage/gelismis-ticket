@@ -83,6 +83,48 @@ export default {
       return interaction.editReply(renderDraft(builder));
     }
 
+    if (customId.startsWith('select_embededitopt_')) {
+      const embedId = customId.replace('select_embededitopt_', '');
+      const builder = getBuilder(interaction.user.id);
+      if (!builder || builder.embedId !== embedId) {
+        return interaction.reply({
+          content: '❌ Oluşturma oturumu bulunamadı veya sona erdi. `/embedolustur` ile yeniden başlatın.',
+          flags: MessageFlags.Ephemeral
+        });
+      }
+
+      const index = parseInt(interaction.values[0], 10);
+      const option = builder.options[index];
+      if (!option) {
+        return interaction.reply({ content: '❌ Seçenek bulunamadı.', flags: MessageFlags.Ephemeral });
+      }
+
+      const modal = new ModalBuilder()
+        .setCustomId(`modal_embedbuild_editopt_${embedId}_${index}`)
+        .setTitle('✏️ Seçenek Düzenle')
+        .addComponents(
+          new ActionRowBuilder().addComponents(
+            new TextInputBuilder()
+              .setCustomId('input_label')
+              .setLabel('Seçenek Başlığı')
+              .setStyle(TextInputStyle.Short)
+              .setPlaceholder('Örn: Teknik Destek')
+              .setRequired(true)
+              .setValue(option.label || '')
+          ),
+          new ActionRowBuilder().addComponents(
+            new TextInputBuilder()
+              .setCustomId('input_optdesc')
+              .setLabel('Seçenek Açıklaması')
+              .setStyle(TextInputStyle.Short)
+              .setPlaceholder('Seçenek açıklaması (opsiyonel)')
+              .setRequired(false)
+              .setValue(option.description || '')
+          )
+        );
+      return interaction.showModal(modal);
+    }
+
     if (customId.startsWith('select_embedaction_')) {
       const embedId = customId.replace('select_embedaction_', '');
       const builder = getBuilder(interaction.user.id);

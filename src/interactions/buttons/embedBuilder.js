@@ -5,7 +5,7 @@ import {
   TextInputStyle,
   ActionRowBuilder
 } from 'discord.js';
-import { getBuilder, cancelBuilder, renderDraft, renderTypeSelect, renderColorSelect, renderTextRemoveSelect, renderOptionRemoveSelect } from '../../managers/embedManager.js';
+import { getBuilder, cancelBuilder, renderDraft, renderTypeSelect, renderColorSelect, renderTextRemoveSelect, renderOptionRemoveSelect, renderOptionEditSelect } from '../../managers/embedManager.js';
 
 export default {
   customId: 'btn_embedbuild_',
@@ -137,6 +137,14 @@ export default {
           )
         );
       return interaction.showModal(modal);
+    }
+
+    if (action === 'editopt') {
+      if (builder.options.length === 0) {
+        return interaction.reply({ content: '❌ Düzenlenecek seçenek yok.', flags: MessageFlags.Ephemeral });
+      }
+      await interaction.deferUpdate();
+      return interaction.editReply(renderOptionEditSelect(builder));
     }
 
     if (action === 'delopt') {
