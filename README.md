@@ -132,7 +132,17 @@ Veritabanı `data/` klasöründe tutulur ve bot açılışta otomatik oluşturul
 
 ## 📄 Lisans
 
-Bu proje [MIT Lisansı](LICENSE) ile lisanslanmıştır.
+Bu proje [Akuyage License](LICENSE) ile lisanslanmıştır.
+
+Botu kullandığınızda botun Discord profil durumunda, botun kullanıldığı proje adıyla birlikte aşağıdaki formatta geliştirici atfı bulunmalıdır:
+
+`<Proje Adı> - akuyage`
+
+Örnek:
+
+`Ticket - akuyage`
+
+Bu atıf, bot aktif olarak kullanıldığı sürece görünür ve okunabilir olmalıdır. Ayrıntılı şartlar için [LICENSE](LICENSE) dosyasına bakın.
 
 https://discord.gg/kK8Gdqk88a
 
