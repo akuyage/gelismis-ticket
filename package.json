@@ -1,6 +1,8 @@
 ﻿{
   "name": "gelismis-ticket-bot",
   "version": "1.0.0",
+  "author": "akuyage",
+  "license": "Akuyage License (Source-Available)",
   "type": "module",
   "main": "src/index.js",
   "scripts": {

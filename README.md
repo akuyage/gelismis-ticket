@@ -132,18 +132,20 @@ Veritabanı `data/` klasöründe tutulur ve bot açılışta otomatik oluşturul
 
 ## 📄 Lisans
 
-Bu proje [Akuyage License](LICENSE) ile lisanslanmıştır.
+Bu proje **Akuyage License (Source-Available)** ile lisanslanmıştır.
 
-Botu kullandığınızda botun Discord profil durumunda, botun kullanıldığı proje adıyla birlikte aşağıdaki formatta geliştirici atfı bulunmalıdır:
+Bu lisans altında yazılımı kişisel veya ticari amaçlarla ücretsiz olarak kullanabilir, değiştirebilir, barındırabilir ve dağıtabilirsiniz. Ancak yazılımın kullanımı, paylaşımı veya türetilmesi durumunda aşağıdaki zorunlu atıf (attribution) şartlarına eksiksiz uyulması gerekmektedir:
 
-`<Proje Adı> - akuyage`
+1. **Discord Bot Profil Durumu:**
+   `<Proje Adı> - akuyage` (Örn: `Ticket - akuyage`)
+2. **Kaynak Kod Reposu:**
+   README, `package.json` (`"author"` alanı) veya eşdeğer metadata dosyalarında orijinal yazar olarak **akuyage** adı korunmalıdır.
+3. **Kamuya Açık Alanlar:**
+   Dokümantasyon, web sitesi, destek sunucusu veya proje listelemelerinde görünür şekilde `"Originally created by akuyage"` (mümkünse [orijinal depoya](https://github.com/akuyage/gelismis-ticket) bağlantı verilerek) belirtilmelidir.
 
-Örnek:
+Ayrıntılı lisans şartları ve koşulları için [LICENSE](LICENSE) dosyasına bakınız.
 
-`Ticket - akuyage`
-
-Bu atıf, bot aktif olarak kullanıldığı sürece görünür ve okunabilir olmalıdır. Ayrıntılı şartlar için [LICENSE](LICENSE) dosyasına bakın.
-
-https://discord.gg/kK8Gdqk88a
+Orijinal Depo: [https://github.com/akuyage/gelismis-ticket](https://github.com/akuyage/gelismis-ticket)  
+Destek Sunucusu: https://discord.gg/kK8Gdqk88a
 
 *Powered by akuyage*
