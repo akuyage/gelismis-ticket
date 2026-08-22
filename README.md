@@ -132,16 +132,9 @@ Veritabanı `data/` klasöründe tutulur ve bot açılışta otomatik oluşturul
 
 ## 📄 Lisans
 
-Bu proje **Akuyage License (Source-Available)** ile lisanslanmıştır.
+Bu proje **MIT Lisansı** ile lisanslanmıştır.
 
-Bu lisans altında yazılımı kişisel veya ticari amaçlarla ücretsiz olarak kullanabilir, değiştirebilir, barındırabilir ve dağıtabilirsiniz. Ancak yazılımın kullanımı, paylaşımı veya türetilmesi durumunda aşağıdaki zorunlu atıf (attribution) şartlarına eksiksiz uyulması gerekmektedir:
-
-1. **Discord Bot Profil Durumu:**
-   `<Proje Adı> - akuyage` (Örn: `Ticket - akuyage`)
-2. **Kaynak Kod Reposu:**
-   README, `package.json` (`"author"` alanı) veya eşdeğer metadata dosyalarında orijinal yazar olarak **akuyage** adı korunmalıdır.
-3. **Kamuya Açık Alanlar:**
-   Dokümantasyon, web sitesi, destek sunucusu veya proje listelemelerinde görünür şekilde `"Originally created by akuyage"` (mümkünse [orijinal depoya](https://github.com/akuyage/gelismis-ticket) bağlantı verilerek) belirtilmelidir.
+Yazılımı kişisel veya ticari amaçlarla ücretsiz olarak kullanabilir, değiştirebilir, dağıtabilir ve özel yazılımlarda kullanabilirsiniz. Tek şart, telif hakkı bildiriminin ve MIT lisans metninin yazılımın tüm kopyalarına veya önemli bölümlerine dahil edilmesidir.
 
 Ayrıntılı lisans şartları ve koşulları için [LICENSE](LICENSE) dosyasına bakınız.
 
